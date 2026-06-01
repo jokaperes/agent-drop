@@ -1,0 +1,17 @@
+node_modules
+.DS_Store
+dist
+dist-ssr
+*.local
+.env
+.nitro
+.tanstack
+.wrangler
+.output
+.vinxi
+__unconfig*
+todos.json
+
+# Local push config — holds the real ntfy topic (a shared push secret).
+# Copy ntfy.env.example to ntfy.env and fill it in. Never commit the real one.
+ntfy.env

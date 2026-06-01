@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+# cdrop <file> ["caption"] — send a file to the user via Claude Drop.
+# Copies the file into the outbox; the notify watcher pushes it to their phone.
+set -euo pipefail
+
+OUT="${DROPBOX_DIR:-/root/claude-dropbox}/out"
+
+if [ "$#" -lt 1 ]; then
+  echo "usage: cdrop <file> [caption]" >&2
+  exit 1
+fi
+
+src="$1"
+caption="${2:-}"
+
+if [ ! -f "$src" ]; then
+  echo "cdrop: no such file: $src" >&2
+  exit 1
+fi
+
+mkdir -p "$OUT"
+base="$(basename "$src")"
+dest="$OUT/$base"
+
+# Avoid clobbering: foo.pdf -> foo-1.pdf -> foo-2.pdf ...
+if [ -e "$dest" ]; then
+  stem="${base%.*}"
+  if [ "$stem" = "$base" ]; then ext=""; else ext=".${base##*.}"; fi
+  n=1
+  while [ -e "$OUT/${stem}-${n}${ext}" ]; do n=$((n + 1)); done
+  base="${stem}-${n}${ext}"
+  dest="$OUT/$base"
+fi
+
+# Write the caption sidecar BEFORE the file so the watcher reads it on detect.
+if [ -n "$caption" ]; then
+  printf '%s' "$caption" > "$OUT/.${base}.caption"
+fi
+
+cp -- "$src" "$dest"
+echo "dropped: $base${caption:+  ($caption)}"
