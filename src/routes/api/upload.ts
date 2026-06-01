@@ -2,7 +2,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { saveUpload } from '#/server/storage'
 
 // POST /api/upload  (multipart/form-data, field name "files", multi-file)
-// Saves every uploaded file into the inbox so Claude can read it.
+// Saves every uploaded file into the inbox so the agent can read it.
 export const Route = createFileRoute('/api/upload')({
   server: {
     handlers: {

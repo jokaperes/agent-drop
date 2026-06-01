@@ -1,0 +1,21 @@
+# Web app. Install to /etc/systemd/system/agent-drop.service and adjust paths.
+[Unit]
+Description=Agent Drop web app (TanStack Start / Nitro)
+After=network.target tailscaled.service
+Wants=tailscaled.service
+
+[Service]
+Type=simple
+WorkingDirectory=/root/code/agent-drop
+EnvironmentFile=/root/code/agent-drop/ntfy.env
+Environment=HOST=127.0.0.1
+Environment=PORT=3010
+Environment=NODE_ENV=production
+ExecStart=/usr/local/bin/node /root/code/agent-drop/.output/server/index.mjs
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

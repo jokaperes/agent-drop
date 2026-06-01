@@ -12,7 +12,7 @@ export const Route = createRootRoute({
         content: 'width=device-width, initial-scale=1, viewport-fit=cover',
       },
       { name: 'theme-color', content: '#0a1418' },
-      { title: 'Claude Drop' },
+      { title: 'Agent Drop' },
     ],
     links: [{ rel: 'stylesheet', href: appCss }],
   }),

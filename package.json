@@ -1,5 +1,5 @@
 {
-  "name": "claude-drop",
+  "name": "agent-drop",
   "private": true,
   "type": "module",
   "imports": {

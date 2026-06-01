@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
-# cdrop <file> ["caption"] — send a file to the user via Claude Drop.
+# agentdrop <file> ["caption"] — send a file to the user via Agent Drop.
 # Copies the file into the outbox; the notify watcher pushes it to their phone.
 set -euo pipefail
 
-OUT="${DROPBOX_DIR:-/root/claude-dropbox}/out"
+OUT="${DROPBOX_DIR:-/root/agent-dropbox}/out"
 
 if [ "$#" -lt 1 ]; then
-  echo "usage: cdrop <file> [caption]" >&2
+  echo "usage: agentdrop <file> [caption]" >&2
   exit 1
 fi
 
@@ -14,7 +14,7 @@ src="$1"
 caption="${2:-}"
 
 if [ ! -f "$src" ]; then
-  echo "cdrop: no such file: $src" >&2
+  echo "agentdrop: no such file: $src" >&2
   exit 1
 fi
 

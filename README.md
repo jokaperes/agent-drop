@@ -1,13 +1,13 @@
-# Claude Drop
+# Agent Drop
 
 A tiny, polished **file-exchange web app** that bridges a terminal-only workflow
 with a phone browser. If you talk to an AI assistant (or anyone) over SSH, you
-can't hand it images/PDFs and you can't see the files it makes for you. Claude
+can't hand it images/PDFs and you can't see the files it makes for you. Agent
 Drop fixes both directions:
 
-- **You → Claude:** upload files or paste text in the app → they land on disk in
+- **You → the agent:** upload files or paste text in the app → they land on disk in
   `in/`, where the assistant reads them straight off the filesystem.
-- **Claude → you:** the assistant drops a file in `out/` → it appears in the app
+- **The agent → you:** the assistant drops a file in `out/` → it appears in the app
   with an **inline viewer** (images, PDFs, text/code, audio, video) plus download
   and delete, and your phone gets an **ntfy push**.
 
@@ -52,12 +52,12 @@ removed) and de-duplicated with a `-1`, `-2` suffix. See
 `scripts/watch-outbox.mjs` watches `out/` (stdlib `fs.watch` + a 10s reconcile
 safety net) and POSTs an [ntfy](https://ntfy.sh) push on each new file. The
 message text goes in the request **body** so emoji/accents survive (HTTP headers
-are latin1-only). A `cdrop <file> ["caption"]` helper copies a file into `out/`
+are latin1-only). A `agentdrop <file> ["caption"]` helper copies a file into `out/`
 and the caption rides along via a hidden `.{name}.caption` sidecar.
 
 ## Security model
 
-There is **no authentication by design**. Claude Drop is meant to run on a private
+There is **no authentication by design**. Agent Drop is meant to run on a private
 network boundary — a [Tailscale](https://tailscale.com) tailnet, a VPN, or LAN —
 and that boundary *is* the lock. **Do not expose it to the public internet.**
 
@@ -86,7 +86,7 @@ All config is environment variables (see [`ntfy.env.example`](ntfy.env.example))
 
 | Var | Default | Meaning |
 |-----|---------|---------|
-| `DROPBOX_DIR` | `/root/claude-dropbox` | Root holding `in/` and `out/` |
+| `DROPBOX_DIR` | `/root/agent-dropbox` | Root holding `in/` and `out/` |
 | `HOST` / `PORT` | `127.0.0.1` / `3010` | Where the Node server binds |
 | `NTFY_URL` | `https://ntfy.sh` | ntfy server |
 | `NTFY_TOPIC` | — | Topic your phone subscribes to (keep it secret) |

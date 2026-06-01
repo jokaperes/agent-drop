@@ -1,10 +1,10 @@
 #!/usr/bin/env node
-// Watches the outbox and sends an ntfy push whenever Claude drops a new file
-// (whether via the `cdrop` helper or written directly). Stdlib only.
+// Watches the outbox and sends an ntfy push whenever the agent drops a new file
+// (whether via the `agentdrop` helper or written directly). Stdlib only.
 import { watch, promises as fs } from 'node:fs'
 import path from 'node:path'
 
-const ROOT = process.env.DROPBOX_DIR ?? '/root/claude-dropbox'
+const ROOT = process.env.DROPBOX_DIR ?? '/root/agent-dropbox'
 const OUT = path.join(ROOT, 'out')
 const NTFY_URL = (process.env.NTFY_URL ?? 'https://ntfy.sh').replace(/\/+$/, '')
 const TOPIC = process.env.NTFY_TOPIC ?? ''
@@ -36,10 +36,10 @@ async function notify(name) {
   const body = caption ? `${caption}\n${name}` : name
   const headers = {
     'Content-Type': 'text/plain; charset=utf-8',
-    Title: 'Claude sent you a file',
+    Title: 'Your agent sent you a file',
     Tags: 'inbox_tray',
     Click: DROP_URL,
-    Actions: `view, Open Claude Drop, ${DROP_URL}`,
+    Actions: `view, Open Agent Drop, ${DROP_URL}`,
   }
   if (TOKEN) headers.Authorization = `Bearer ${TOKEN}`
   try {

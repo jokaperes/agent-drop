@@ -102,7 +102,7 @@ export function Uploader({ onDone }: { onDone: () => void }) {
             <div>
               <p className="font-medium">Drop files here, or tap to choose</p>
               <p className="text-sm text-muted-foreground">
-                Photos, PDFs, code — anything. They land in Claude’s inbox.
+                Photos, PDFs, code — anything. They land in the agent’s inbox.
               </p>
             </div>
             <Button

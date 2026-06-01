@@ -23,8 +23,8 @@ function Home() {
           <Waves className="size-6" />
         </div>
         <div className="flex-1">
-          <h1 className="text-xl font-bold leading-tight tracking-tight">Claude Drop</h1>
-          <p className="text-sm text-muted-foreground">Files in and out, between you and Claude.</p>
+          <h1 className="text-xl font-bold leading-tight tracking-tight">Agent Drop</h1>
+          <p className="text-sm text-muted-foreground">Files in and out, between you and your AI agent.</p>
         </div>
       </header>
 
@@ -32,7 +32,7 @@ function Home() {
         <TabsList className="mb-5 grid w-full grid-cols-2">
           <TabsTrigger value="from" className="gap-2">
             <Inbox className="size-4" />
-            From Claude
+            From Agent
             {outCount > 0 && (
               <Badge variant="secondary" className="ml-1 h-5 px-1.5 text-[10px]">
                 {outCount}
@@ -41,14 +41,14 @@ function Home() {
           </TabsTrigger>
           <TabsTrigger value="send" className="gap-2">
             <Send className="size-4" />
-            Send to Claude
+            Send to Agent
           </TabsTrigger>
         </TabsList>
 
         <TabsContent value="from" className="space-y-4">
           <div className="flex items-center justify-between">
             <p className="text-sm text-muted-foreground">
-              Files Claude has sent you. New drops appear automatically.
+              Files your agent has sent you. New drops appear automatically.
             </p>
             <Button
               variant="ghost"
@@ -64,7 +64,7 @@ function Home() {
             box="out"
             files={outbox.data}
             loading={outbox.loading}
-            emptyHint="Nothing here yet. Files Claude sends you will show up here."
+            emptyHint="Nothing here yet. Files your agent sends you will show up here."
             onChanged={outbox.refetch}
           />
         </TabsContent>
@@ -88,7 +88,7 @@ function Home() {
               box="in"
               files={inbox.data}
               loading={inbox.loading}
-              emptyHint="Files you send to Claude will be listed here."
+              emptyHint="Files you send to your agent will be listed here."
               onChanged={inbox.refetch}
             />
           </div>

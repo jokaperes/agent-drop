@@ -2,9 +2,9 @@ import { promises as fs, createReadStream } from 'node:fs'
 import path from 'node:path'
 import { Readable } from 'node:stream'
 
-// Root of the shared dropbox. `in/` holds files the user sends to Claude,
-// `out/` holds files Claude sends to the user. Overridable via env for tests.
-const ROOT = process.env.DROPBOX_DIR ?? '/root/claude-dropbox'
+// Root of the shared dropbox. `in/` holds files the user sends to the agent,
+// `out/` holds files the agent sends to the user. Overridable via env for tests.
+const ROOT = process.env.DROPBOX_DIR ?? '/root/agent-dropbox'
 
 export type Box = 'in' | 'out'
 
@@ -169,7 +169,7 @@ export async function deleteFile(box: string, name: string): Promise<void> {
   assertBox(box)
   const full = resolveInBox(box, name)
   await fs.unlink(full)
-  // Best-effort: drop the hidden caption sidecar a `cdrop` may have left.
+  // Best-effort: drop the hidden caption sidecar a `agentdrop` may have left.
   const sidecar = path.join(path.dirname(full), `.${path.basename(full)}.caption`)
   await fs.unlink(sidecar).catch(() => {})
 }

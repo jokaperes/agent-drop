@@ -5,7 +5,7 @@ server {
     listen 80;
     server_name drop.home;
 
-    # Claude Drop — file exchange app. Allow large uploads.
+    # Agent Drop — file exchange app. Allow large uploads.
     client_max_body_size 512m;
 
     location / {
