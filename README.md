@@ -86,7 +86,7 @@ All config is environment variables (see [`ntfy.env.example`](ntfy.env.example))
 
 | Var | Default | Meaning |
 |-----|---------|---------|
-| `DROPBOX_DIR` | `/root/agent-dropbox` | Root holding `in/` and `out/` |
+| `DROPBOX_DIR` | `/var/lib/agent-drop` | Root holding `in/` and `out/` |
 | `HOST` / `PORT` | `127.0.0.1` / `3010` | Where the Node server binds |
 | `NTFY_URL` | `https://ntfy.sh` | ntfy server |
 | `NTFY_TOPIC` | — | Topic your phone subscribes to (keep it secret) |

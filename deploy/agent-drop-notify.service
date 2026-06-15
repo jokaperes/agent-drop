@@ -6,9 +6,9 @@ After=network.target
 
 [Service]
 Type=simple
-WorkingDirectory=/root/code/agent-drop
-EnvironmentFile=/root/code/agent-drop/ntfy.env
-ExecStart=/usr/local/bin/node /root/code/agent-drop/scripts/watch-outbox.mjs
+WorkingDirectory=/opt/agent-drop
+EnvironmentFile=/opt/agent-drop/ntfy.env
+ExecStart=/usr/local/bin/node /opt/agent-drop/scripts/watch-outbox.mjs
 Restart=always
 RestartSec=5
 StandardOutput=journal

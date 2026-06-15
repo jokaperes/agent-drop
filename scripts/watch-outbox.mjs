@@ -4,7 +4,7 @@
 import { watch, promises as fs } from 'node:fs'
 import path from 'node:path'
 
-const ROOT = process.env.DROPBOX_DIR ?? '/root/agent-dropbox'
+const ROOT = process.env.DROPBOX_DIR ?? '/var/lib/agent-drop'
 const OUT = path.join(ROOT, 'out')
 const NTFY_URL = (process.env.NTFY_URL ?? 'https://ntfy.sh').replace(/\/+$/, '')
 const TOPIC = process.env.NTFY_TOPIC ?? ''

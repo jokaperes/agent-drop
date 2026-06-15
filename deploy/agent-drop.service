@@ -6,12 +6,12 @@ Wants=tailscaled.service
 
 [Service]
 Type=simple
-WorkingDirectory=/root/code/agent-drop
-EnvironmentFile=/root/code/agent-drop/ntfy.env
+WorkingDirectory=/opt/agent-drop
+EnvironmentFile=/opt/agent-drop/ntfy.env
 Environment=HOST=127.0.0.1
 Environment=PORT=3010
 Environment=NODE_ENV=production
-ExecStart=/usr/local/bin/node /root/code/agent-drop/.output/server/index.mjs
+ExecStart=/usr/local/bin/node /opt/agent-drop/.output/server/index.mjs
 Restart=always
 RestartSec=5
 StandardOutput=journal

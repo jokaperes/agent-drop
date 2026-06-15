@@ -3,7 +3,7 @@
 # Copies the file into the outbox; the notify watcher pushes it to their phone.
 set -euo pipefail
 
-OUT="${DROPBOX_DIR:-/root/agent-dropbox}/out"
+OUT="${DROPBOX_DIR:-/var/lib/agent-drop}/out"
 
 if [ "$#" -lt 1 ]; then
   echo "usage: agentdrop <file> [caption]" >&2

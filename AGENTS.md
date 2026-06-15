@@ -18,7 +18,7 @@ Two folders on disk are the entire data model:
 - `$DROPBOX_DIR/out/` — **the assistant writes here**; the human views/downloads
   them in the app and gets an ntfy push.
 
-`DROPBOX_DIR` defaults to `/root/agent-dropbox`.
+`DROPBOX_DIR` defaults to `/var/lib/agent-drop`.
 
 ## How an assistant uses it at runtime
 

@@ -4,7 +4,7 @@ import { Readable } from 'node:stream'
 
 // Root of the shared dropbox. `in/` holds files the user sends to the agent,
 // `out/` holds files the agent sends to the user. Overridable via env for tests.
-const ROOT = process.env.DROPBOX_DIR ?? '/root/agent-dropbox'
+const ROOT = process.env.DROPBOX_DIR ?? '/var/lib/agent-drop'
 
 export type Box = 'in' | 'out'
 
